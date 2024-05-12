@@ -76,6 +76,9 @@ function randomColor(rate) {
     }
 }
 
+let purpleCount = 0; 
+let yellowCount = 0;
+
 function generateColors() {
   clickCount++;
   const rate = {
@@ -90,12 +93,20 @@ function generateColors() {
   const colorResults = document.getElementById("colorResults");
   colorResults.innerHTML = "";
 
+
   for (let i = 0; i < numOfColors; i++) {
       const color = randomColor(rate);
       const colorCard = document.createElement("div");
       colorCard.classList.add("card");
       colorCard.style.backgroundColor = color;
       colorResults.appendChild(colorCard);
+
+      if (color === "purple") {
+          purpleCount++;
+      }
+      if (color === "yellow") {
+          yellowCount++;
+      }
   }
 
   // อัพเดทค่านับใน HTML
@@ -103,7 +114,16 @@ function generateColors() {
   Diamon = clickCount * 2000;
   document.getElementById("clickCount").innerHTML = "จำนวนรอบที่สุ่ม: " + clickCount + " รอบ"; 
   document.getElementById("clickCount11").innerHTML = "รวมจำนวนกาชา(ครั้งละ11ใบ): " + clickCount11+" ใบ";
-  document.getElementById("Diamon").innerHTML = "เพชรที่ใช้(2000/ต่อครั้ง): " + Diamon+" เพชร";
+  document.getElementById("Diamon").innerHTML = "เพรชที่ใช้(2000/ต่อครั้ง): " + Diamon+" เพรช";
+  
+  if (purpleCount > 0) {
+      alert("ยินดีด้วย! คุณได้รับพาหนะ ระดับ อีปิค");
+      purpleCount = 0;
+  }
+  if (yellowCount > 0) {
+      alert("ยินดีด้วย! คุณได้รับพาหนะ ระดับ ตำนาน");
+      yellowCount = 0;
+  }
 }
 
 </script>
