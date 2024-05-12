@@ -58,9 +58,12 @@
     <div>
 <h1>อัญเชิญพาหนะเจิดจริสแห่งใกล้รุ่ง</h1>
 <button onclick="generateColors()">กดสุ่มตรงนี้</button>
+<div id="clickCount"></div>
+<div id="clickCount11"></div>
 <div id="colorResults"></div>
 </div>
 <script>
+  let clickCount = 0;
 function randomColor(rate) {
     const randNum = Math.random() * 100;
     let cumulativeRate = 0;
@@ -72,7 +75,11 @@ function randomColor(rate) {
     }
 }
 
+let purpleCount = 0; 
+let yellowCount = 0;
+
 function generateColors() {
+  clickCount++;
     const rate = {
         "white": 79.9020894,
         "green": 19.9299996,
@@ -91,7 +98,26 @@ function generateColors() {
         colorCard.classList.add("card");
         colorCard.style.backgroundColor = color;
         colorResults.appendChild(colorCard);
+
+        if (color === "purple") {
+          purpleCount++;
+      }
+      if (color === "yellow") {
+          yellowCount++;
+      }
     }
+    clickCount11 = clickCount * 11;
+    document.getElementById("clickCount").innerHTML = "จำนวนรอบที่สุ่ม: " + clickCount + " รอบ"; 
+    document.getElementById("clickCount11").innerHTML = "รวมจำนวนกาชา(ครั้งละ11ใบ): " + clickCount11+" ใบ";
+
+  if (purpleCount > 0) {
+      alert("ยินดีด้วย! คุณได้รับพาหนะ ระดับ อีปิค");
+      purpleCount = 0;
+  }
+  if (yellowCount > 0) {
+      alert("ยินดีด้วย! คุณได้รับพาหนะ ระดับ ตำนาน");
+      yellowCount = 0;
+  }
 }
 </script>
 
